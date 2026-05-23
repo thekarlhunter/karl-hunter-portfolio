@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karl Hunter — Creative Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #888888;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ── Main Card ── */
+    .card {
+      background: var(--bg);
+      min-height: 100vh;
+      padding: 32px 40px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 100px;
+    }
+
+    .logo {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-link:hover {
+      opacity: 0.5;
+    }
+
+    /* ── Main Content: Hero + Projects side by side ── */
+    .main-content {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+      align-items: start;
+      flex: 1;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: sticky;
+      top: 32px;
+    }
+
+    .hero-name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-bio {
+      font-size: 14px;
+      letter-spacing: 0em;
+      line-height: 17px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .hero-bio a {
+      color: #2563eb;
+      font-weight: 600;
+      transition: opacity 0.3s ease;
+    }
+
+    .hero-bio a:hover {
+      opacity: 0.5;
+    }
+
+    /* ── Projects Grid ── */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .project {
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-6px);
+      opacity: 0.9;
+    }
+
+    .project-image {
+      width: 100%;
+      border-radius: 0;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: #e8e8e8;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Different aspect ratios to create masonry effect */
+    .project:nth-child(1) .project-image { aspect-ratio: 3/4; }
+    .project:nth-child(2) .project-image { aspect-ratio: 2/3; }
+    .project:nth-child(3) .project-image { aspect-ratio: 1/2; }
+    .project:nth-child(4) .project-image { aspect-ratio: 3/4; }
+
+    .project-title {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 100px;
+      padding-top: 0;
+    }
+
+    .footer-copyright {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text);
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-link:hover {
+      opacity: 0.5;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .main-content {
+        grid-template-columns: 240px 1fr;
+        gap: 32px;
+      }
+
+      .projects {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        padding: 24px 20px 32px;
+      }
+
+      .header {
+        margin-bottom: 60px;
+      }
+
+      .main-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero {
+        position: static;
+      }
+
+      .projects {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        margin-top: 60px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .project:nth-child(1) .project-image,
+      .project:nth-child(2) .project-image,
+      .project:nth-child(3) .project-image,
+      .project:nth-child(4) .project-image {
+        aspect-ratio: 4/3;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- Header -->
+    <header class="header">
+      <a href="/" class="logo">KH</a>
+      <a href="#" class="nav-link">Work With Me</a>
+    </header>
+
+    <!-- Main Content: Hero + Projects side by side -->
+    <div class="main-content">
+
+      <!-- Hero -->
+      <section class="hero">
+        <h1 class="hero-name">Karl Hunter</h1>
+        <p class="hero-bio">Creative consultant specializing in AI, brand experiences, and creative direction. I teach creatives <a href="#">how to future-proof their craft</a> and explore the future of creative work in my <a href="#">writing</a>.</p>
+      </section>
+
+      <!-- Projects -->
+      <section class="projects">
+
+        <a href="aquarius-season.html" class="project">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&h=800&fit=crop" alt="Aquarius Season">
+          </div>
+          <h3 class="project-title">Aquarius Season</h3>
+        </a>
+
+        <a href="folks.html" class="project">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&h=900&fit=crop" alt="Folks">
+          </div>
+          <h3 class="project-title">Folks</h3>
+        </a>
+
+        <a href="new-year-same-setting.html" class="project">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1516575334481-f85287c2c882?w=600&h=1200&fit=crop" alt="New Year, Same Setting">
+          </div>
+          <h3 class="project-title">New Year, Same Setting</h3>
+        </a>
+
+        <a href="oslo-dance-company.html" class="project">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=600&h=800&fit=crop" alt="Oslo Dance Company">
+          </div>
+          <h3 class="project-title">Oslo Dance Company</h3>
+        </a>
+
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span class="footer-copyright">&copy; 2026 Karl Hunter</span>
+      <nav class="footer-links">
+        <a href="https://x.com/" target="_blank" rel="noopener" class="footer-link">Twitter (X)</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer-link">Instagram</a>
+        <a href="#" class="footer-link">Substack</a>
+        <a href="#" class="footer-link">YouTube</a>
+      </nav>
+    </footer>
+
+  </div>
+
+</body>
+</html>
