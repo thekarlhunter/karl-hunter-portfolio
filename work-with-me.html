@@ -189,13 +189,21 @@
         document.getElementById('contact-form').addEventListener('submit', function(e) {
           e.preventDefault();
           var form = this;
-          fetch('/', {
+          fetch(window.location.pathname, {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams(new FormData(form)).toString()
-          }).then(function() {
-            form.style.display = 'none';
-            document.getElementById('success-message').style.display = 'block';
+          })
+          .then(function(response) {
+            if (response.ok) {
+              form.style.display = 'none';
+              document.getElementById('success-message').style.display = 'block';
+            } else {
+              form.submit();
+            }
+          })
+          .catch(function() {
+            form.submit();
           });
         });
       </script>
