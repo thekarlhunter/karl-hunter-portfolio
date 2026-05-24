@@ -96,6 +96,33 @@
       line-height: 17px;
       color: var(--text-secondary);
       font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hero-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      transition: opacity 0.3s ease;
+      width: fit-content;
+    }
+
+    .hero-link:hover {
+      opacity: 0.4;
+    }
+
+    .hero-link-label {
+      color: var(--text-secondary);
+      min-width: 56px;
     }
 
     /* ── Footer ── */
@@ -163,6 +190,17 @@
     <section class="hero">
       <h1 class="hero-name">Karl Hunter</h1>
       <p class="hero-bio">Designing, writing, filming, and making things for the internet.</p>
+      <nav class="hero-links">
+        <a href="https://letters.karlhunter.com/" target="_blank" rel="noopener" class="hero-link">
+          <span class="hero-link-label">Writing</span>letters.karlhunter.com
+        </a>
+        <a href="https://youtube.com/@karlhunter/" target="_blank" rel="noopener" class="hero-link">
+          <span class="hero-link-label">Videos</span>youtube.com/@karlhunter
+        </a>
+        <a href="https://creativemarket.com/khstudio" target="_blank" rel="noopener" class="hero-link">
+          <span class="hero-link-label">Fonts</span>creativemarket.com/khstudio
+        </a>
+      </nav>
     </section>
 
     <footer class="footer">
