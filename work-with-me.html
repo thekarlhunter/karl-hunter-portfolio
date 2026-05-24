@@ -117,6 +117,7 @@
 
     @media (max-width: 768px) {
       .page { padding: 24px 20px 32px; }
+      .header { margin-bottom: 60px; }
       .main-content { grid-template-columns: 1fr; gap: 32px; }
       .page-info { position: static; }
       .footer { flex-direction: column; gap: 20px; align-items: flex-start; margin-top: 60px; }
@@ -139,7 +140,7 @@
         <p class="page-description">Tell me about your project and I'll be in touch within a few days.</p>
       </aside>
 
-      <form name="work-with-me" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form id="contact-form" name="work-with-me" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="work-with-me">
         <p style="display:none;"><input name="bot-field"></p>
 
@@ -173,6 +174,26 @@
 
         <button type="submit" class="submit-btn">Send</button>
       </form>
+
+      <div id="success-message" style="display:none;">
+        <p class="page-title" style="margin-bottom:8px;">Message received.</p>
+        <p class="page-description">Thanks for reaching out — I'll be in touch within a few days.</p>
+      </div>
+
+      <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+          e.preventDefault();
+          var form = this;
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(new FormData(form)).toString()
+          }).then(function() {
+            form.style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+          });
+        });
+      </script>
 
     </div>
 
