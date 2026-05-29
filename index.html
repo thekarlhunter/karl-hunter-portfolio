@@ -118,14 +118,14 @@
     .cards {
       display: grid;
       grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr;
-      gap: 8px;
+      gap: 12px;
       align-items: start;
     }
 
     .card-item {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
     }
 
@@ -141,17 +141,18 @@
     }
 
     /* Grid placement */
-    .card-prints   { grid-column: 1;   grid-row: 1 / span 2; }
+    .card-prints   { grid-column: 1;   grid-row: 1 / span 2; height: 100%; }
     .card-music    { grid-column: 2/4; grid-row: 1; }
     .card-substack { grid-column: 4/6; grid-row: 1; }
-    .card-fonts    { grid-column: 2;   grid-row: 2; }
+    .card-fonts    { grid-column: 2;   grid-row: 2; align-self: end; }
     .card-youtube  { grid-column: 3/6; grid-row: 2; }
 
-    .card-prints   .card-image { aspect-ratio: 12/17; background: #e8e3db; }
-    .card-music    .card-image { aspect-ratio: 1/1;   background: #4a8b9e; }
-    .card-substack .card-image { aspect-ratio: 3/2;   background: #9c8c3e; }
-    .card-fonts    .card-image { aspect-ratio: 1/1;   background: #4a7a4d; }
-    .card-youtube  .card-image { aspect-ratio: 16/9;  background: #8b6474; }
+    /* Prints fills its full span — height driven by Music + YouTube rows */
+    .card-prints   .card-image { flex: 1;            background: #e8e3db; }
+    .card-music    .card-image { aspect-ratio: 3/2;  background: #4a8b9e; }
+    .card-substack .card-image { aspect-ratio: 3/2;  background: #9c8c3e; }
+    .card-fonts    .card-image { aspect-ratio: 1/1;  background: #4a7a4d; }
+    .card-youtube  .card-image { aspect-ratio: 16/9; background: #8b6474; }
 
     /* ── Footer ── */
     .footer {
