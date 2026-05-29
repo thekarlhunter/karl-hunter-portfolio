@@ -72,7 +72,7 @@
       flex: 1;
     }
 
-    /* ── Hero / Sidebar ── */
+    /* ── Sidebar ── */
     .hero { position: sticky; top: 32px; }
 
     .hero-name {
@@ -110,11 +110,16 @@
       min-width: 56px;
     }
 
-    /* ── Cards Grid ── */
+    /* ── Cards Grid ──
+       5 columns. Prints spans both rows on col 1.
+       Top row:    Music (cols 2–3)  | Substack (cols 4–5)
+       Bottom row: Fonts (col 2)     | YouTube  (cols 3–5)
+    */
     .cards {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
       gap: 12px;
+      align-items: start;
     }
 
     .card-item {
@@ -126,7 +131,7 @@
 
     .card-item:hover { transform: translateY(-6px); opacity: 0.85; }
 
-    .card-image { width: 100%; }
+    .card-image { width: 100%; display: block; }
 
     .card-label {
       font-size: 13px;
@@ -135,25 +140,25 @@
       color: var(--text);
     }
 
-    /* Card placement */
-    .card-prints  { grid-column: 1; grid-row: 1 / span 2; align-self: stretch; }
-    .card-music   { grid-column: 2; grid-row: 1; }
-    .card-substack{ grid-column: 3; grid-row: 1; }
-    .card-fonts   { grid-column: 2; grid-row: 2; }
-    .card-youtube { grid-column: 3; grid-row: 2; }
+    /* Grid placement */
+    .card-prints   { grid-column: 1;   grid-row: 1 / span 2; align-self: stretch; }
+    .card-music    { grid-column: 2/4; grid-row: 1; }
+    .card-substack { grid-column: 4/6; grid-row: 1; }
+    .card-fonts    { grid-column: 2;   grid-row: 2; }
+    .card-youtube  { grid-column: 3/6; grid-row: 2; }
 
-    /* Prints image fills full card height */
+    /* Prints stretches to fill both rows */
     .card-prints .card-image {
       flex: 1;
+      min-height: 200px;
       background: #e8e3db;
-      min-height: 240px;
     }
 
-    /* Other card images with aspect ratios */
-    .card-music    .card-image { aspect-ratio: 4/3; background: #4a8b9e; }
-    .card-substack .card-image { aspect-ratio: 4/3; background: #9c8c3e; }
+    /* Other cards use aspect ratios */
+    .card-music    .card-image { aspect-ratio: 3/2;  background: #4a8b9e; }
+    .card-substack .card-image { aspect-ratio: 3/2;  background: #9c8c3e; }
     .card-fonts    .card-image { aspect-ratio: 1/1;  background: #4a7a4d; }
-    .card-youtube  .card-image { aspect-ratio: 4/3; background: #8b6474; }
+    .card-youtube  .card-image { aspect-ratio: 16/9; background: #8b6474; }
 
     /* ── Footer ── */
     .footer {
@@ -176,7 +181,7 @@
     .footer-link:hover { opacity: 0.5; }
 
     /* ── Responsive ── */
-    @media (max-width: 1024px) {
+    @media (max-width: 1100px) {
       .main-content { grid-template-columns: 220px 1fr; gap: 32px; }
     }
 
@@ -187,22 +192,31 @@
       .main-content { grid-template-columns: 1fr; gap: 32px; }
       .hero { position: static; }
 
-      .cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+      /* Reset all grid placements */
+      .cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
 
-      /* Reset grid placement for mobile */
-      .card-prints, .card-music, .card-substack,
-      .card-fonts, .card-youtube {
+      .card-prints,
+      .card-music,
+      .card-substack,
+      .card-fonts,
+      .card-youtube {
         grid-column: auto;
         grid-row: auto;
         align-self: auto;
       }
 
-      /* Prints gets portrait ratio instead of stretching */
       .card-prints .card-image {
         flex: none;
         aspect-ratio: 3/4;
         min-height: 0;
       }
+
+      /* On mobile, YouTube spans full width */
+      .card-youtube { grid-column: 1 / span 2; }
+      .card-youtube .card-image { aspect-ratio: 16/9; }
 
       .footer {
         flex-direction: column;
