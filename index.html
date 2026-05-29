@@ -66,8 +66,8 @@
     /* ── Main Layout ── */
     .main-content {
       display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 48px;
+      grid-template-columns: 420px 1fr;
+      gap: 56px;
       align-items: start;
       flex: 1;
     }
@@ -84,10 +84,11 @@
 
     .hero-bio {
       font-size: 14px;
-      line-height: 17px;
+      line-height: 20px;
       color: var(--text-secondary);
       font-weight: 500;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+      max-width: 420px;
     }
 
     .hero-links { display: flex; flex-direction: column; gap: 8px; }
@@ -111,21 +112,26 @@
     }
 
     /* ── Cards Grid ──
-       5 columns. Prints spans both rows on col 1.
-       Top row:    Music (cols 2–3)  | Substack (cols 4–5)
-       Bottom row: Fonts (col 2)     | YouTube  (cols 3–5)
+       Explicit tracks so each card gets its true width:
+         col 1 → Prints (tall)
+         col 2 → Fonts width   | col 3 → rest of Music
+         col 4 → Substack width | col 5 → rest of YouTube
+       Top row:    Music (cols 2–3)  | Substack (col 4)
+       Bottom row: Fonts (col 2)     | YouTube  (cols 4–5)
+       So Music & Fonts share a left edge (Fonts narrower),
+       Substack & YouTube share a left edge (YouTube wider).
     */
     .cards {
       display: grid;
-      grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr;
-      gap: 16px;
+      grid-template-columns: 4.2fr 2fr 1.1fr 3.1fr 2.45fr;
+      gap: 24px;
       align-items: start;
     }
 
     .card-item {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
     }
 
@@ -141,13 +147,13 @@
     }
 
     /* Grid placement */
-    .card-prints   { grid-column: 1;   grid-row: 1 / span 2; height: 100%; }
+    .card-prints   { grid-column: 1;   grid-row: 1 / span 2; align-self: stretch; }
     .card-music    { grid-column: 2/4; grid-row: 1; }
-    .card-substack { grid-column: 4/6; grid-row: 1; }
-    .card-fonts    { grid-column: 2;   grid-row: 2; align-self: end; }
-    .card-youtube  { grid-column: 3/6; grid-row: 2; }
+    .card-substack { grid-column: 4/5; grid-row: 1; }
+    .card-fonts    { grid-column: 2/3; grid-row: 2; align-self: end; }
+    .card-youtube  { grid-column: 4/6; grid-row: 2; align-self: end; }
 
-    /* Prints fills its full span — height driven by Music + YouTube rows */
+    /* Prints fills its full span height; others use true aspect ratios */
     .card-prints   .card-image { flex: 1;            background: #e8e3db; }
     .card-music    .card-image { aspect-ratio: 1/1;  background: #4a8b9e; }
     .card-substack .card-image { aspect-ratio: 3/2;  background: #9c8c3e; }
@@ -176,7 +182,8 @@
 
     /* ── Responsive ── */
     @media (max-width: 1100px) {
-      .main-content { grid-template-columns: 260px 1fr; gap: 36px; }
+      .main-content { grid-template-columns: 320px 1fr; gap: 40px; }
+      .cards { gap: 16px; }
     }
 
     @media (max-width: 768px) {
@@ -198,9 +205,10 @@
       .card-youtube {
         grid-column: auto;
         grid-row: auto;
+        align-self: auto;
       }
 
-      .card-prints .card-image { aspect-ratio: 3/4; }
+      .card-prints .card-image { flex: none; aspect-ratio: 3/4; }
 
       .card-youtube { grid-column: 1 / span 2; }
       .card-youtube .card-image { aspect-ratio: 16/9; }
