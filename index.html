@@ -66,7 +66,7 @@
     /* ── Main Layout ── */
     .main-content {
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 340px 1fr;
       gap: 48px;
       align-items: start;
       flex: 1;
@@ -118,7 +118,7 @@
     .cards {
       display: grid;
       grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr;
-      gap: 12px;
+      gap: 16px;
       align-items: start;
     }
 
@@ -149,7 +149,7 @@
 
     /* Prints fills its full span — height driven by Music + YouTube rows */
     .card-prints   .card-image { flex: 1;            background: #e8e3db; }
-    .card-music    .card-image { aspect-ratio: 3/2;  background: #4a8b9e; }
+    .card-music    .card-image { aspect-ratio: 1/1;  background: #4a8b9e; }
     .card-substack .card-image { aspect-ratio: 3/2;  background: #9c8c3e; }
     .card-fonts    .card-image { aspect-ratio: 1/1;  background: #4a7a4d; }
     .card-youtube  .card-image { aspect-ratio: 16/9; background: #8b6474; }
@@ -159,7 +159,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 80px;
+      margin-top: 56px;
     }
 
     .footer-copyright { font-size: 13px; color: var(--text-secondary); font-weight: 400; }
@@ -176,7 +176,7 @@
 
     /* ── Responsive ── */
     @media (max-width: 1100px) {
-      .main-content { grid-template-columns: 220px 1fr; gap: 32px; }
+      .main-content { grid-template-columns: 260px 1fr; gap: 36px; }
     }
 
     @media (max-width: 768px) {
