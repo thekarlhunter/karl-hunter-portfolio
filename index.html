@@ -181,12 +181,7 @@
     .footer-link:hover { opacity: 0.5; }
 
     /* ── Responsive ── */
-    @media (max-width: 1100px) {
-      .main-content { grid-template-columns: 320px 1fr; gap: 40px; }
-      .cards { gap: 16px; }
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .card { padding: 24px 20px 32px; }
       .header { margin-bottom: 60px; }
 
@@ -221,6 +216,13 @@
       }
 
       .footer-links { flex-wrap: wrap; gap: 16px; }
+    }
+
+    /* ── Disable hover effects + animations on touch devices ── */
+    @media (hover: none) {
+      .nav-link, .hero-link, .card-item, .footer-link { transition: none; }
+      .nav-link:hover, .hero-link:hover, .footer-link:hover { opacity: 1; }
+      .card-item:hover { transform: none; opacity: 1; }
     }
   </style>
 </head>
